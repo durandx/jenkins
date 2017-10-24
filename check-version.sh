@@ -19,6 +19,7 @@ fi
 if [ "$LAST_KNOWN_VERSION" != "$JENKINS_VERSION" ]; then
 	echo "$now : Restarting agent-jenkins." | tee --append $UPDATE_AGENT_LOG_DIR/check-version.log
 	service jenkinsslave restart
+	echo "$JENKINS_VERSION" > $UPDATE_AGENT_DIR/version_jenkins.txt
 fi
 
 echo "$now : Done." | tee --append $UPDATE_AGENT_LOG_DIR/check-version.log
