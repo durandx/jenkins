@@ -17,6 +17,7 @@ for pid in $JENKINS_PIDS; do
   start_since=$(ps -p $pid -o pid,etime,args | awk 'substr($2,1,index($2,"-")-1)>$MAX_DAYS')
   if [ -z "$start_since" ]; then
     echo "Process $pid ($cmdline) is running for less than $MAX_DAYS day(s). Skipping..."
+    continue
   fi
   build_id=$(echo $build_env | cut -d= -f2)
   
